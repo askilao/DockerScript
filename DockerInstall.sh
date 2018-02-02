@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Script for installing Docker
+#script for installing Docker
 echo "Updating apt and adding HTTPS..."
 {
 apt-get update									#Update apt
@@ -19,8 +19,7 @@ apt-key fingerprint 0EBFCD88							#Verifying fingerprint
 
 echo "Adding Docker repository..."
 {
-add-apt-repository \								#Adding repository
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+add-apt-repository \								"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
 } &>/dev/null
@@ -32,3 +31,4 @@ apt-get install -y docker-ce							#install docker
 } &>/dev/null
 echo "Testing if install successfull"
 docker run hello-world								#test if installed
+
