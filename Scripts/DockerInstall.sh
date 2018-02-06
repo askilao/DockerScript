@@ -19,7 +19,8 @@ apt-key fingerprint 0EBFCD88							#Verifying fingerprint
 
 echo "Adding Docker repository..."
 {
-add-apt-repository \								"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
 } &>/dev/null
