@@ -3,7 +3,7 @@
 #script for installing Docker
 echo "Updating apt and adding HTTPS..."
 {
-apt-get update							#Update apt
+apt-get update						#Update apt
 apt-get install -y \					#Enable apt for HTTPS
     apt-transport-https \
     ca-certificates \
