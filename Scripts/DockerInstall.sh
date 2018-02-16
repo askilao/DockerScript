@@ -17,7 +17,7 @@ echo "Adding Docker official GPG key..."
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -		
 } &>/dev/null
 
-apt-key fingerprint 0EBFCD88    		#Verifying fingerprint
+apt-key fingerprint 0EBFCD88    		    #Verifying fingerprint
 
 echo "Adding Docker repository..."
 {
@@ -29,7 +29,7 @@ echo "Adding Docker repository..."
 
 echo "Updating apt and installing docker..."
 {
-apt-get update							#update
+apt-get update						#update
 apt-get install -y docker-ce			#install docker
 } &>/dev/null
 echo "Testing if install successfull"
