@@ -18,6 +18,5 @@ declare -a arr=("10.212.136.60" "10.10.0.248:32731" "10.10.0.248:32782")
 
 for i in "${arr[@]}"
 do
-	curl -s -o "/dev/null" $i
-	check;
+	echo "$i"
 done
