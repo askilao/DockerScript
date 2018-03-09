@@ -31,6 +31,7 @@ echo "Updating apt and installing docker..."
 {
 apt-get update						#update
 apt-get install -y docker-ce			#install docker
+apt-get install -y docker-compose       #install docker-compose
 } &>/dev/null
 echo "Testing if install successfull"
 docker run hello-world					#test if installed
