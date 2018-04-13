@@ -63,12 +63,12 @@ def get_workers_alt():
 def scale_up(current,goal):
     for i in range((current + 1), (goal + 1)):
         verbose("Starting server " + str(i))
-    subprocess.call(["docker service update --replicas=" + int(goal) + "bf_bookface_web"])
+    os.system("docker service update --replicas=" + str(goal) + "bf_bookface_web")
 
 def scale_down(current,goal):
     for i in range (current, goal, -1):
         verbose("Shutting down server " + str(i))
-    subprocess.call(["docker service update --replicas=" + int(goal) + "bf_bookface_web"])
+    os.system("docker service update --replicas=" + str(goal) + "bf_bookface_web")
 
 
 current_rate = get_rate(USER,PASSWORD,IP)
