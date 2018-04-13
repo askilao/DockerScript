@@ -1,0 +1,4 @@
+backup conf fil med 
+hosts og mapper som skal kopieres
+cp -al for kopiering med hardlinks
+
