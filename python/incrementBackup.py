@@ -4,6 +4,8 @@ import os
 import shutil
 import argparse
 import subprocess
+import time
+
 
 VERBOSE = 0
 DEBUG = 0
@@ -52,6 +54,8 @@ def status_check(host):
         name = subprocess.check_output(["openstack server list | grep " + host + " | awk '{print$4}'"],shell=True)
         verbose("Starting up " + name)
         subprocess.call(["openstack server start " + name],shell=True)
+        time.sleep(20)
+        
 
 
 
