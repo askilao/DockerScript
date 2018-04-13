@@ -52,7 +52,7 @@ def get_rate_alt(user,password,ip):
 # 2 get number of workers in swarm
 def get_workers():
     # docker service ls | grep bookface_web | awk '{print $4}' | sed -e 's/.*\///g'
-    output = subprocess.check_output([docker service ls | grep bookface_web | awk '{print $4}' | sed -e 's/.*\///g'], shell=true)
+    output = subprocess.check_output([docker service ls | grep bookface_web | awk '{print $4}' | sed -e 's/.*\///g'], shell=True)
     output.rstrip()
     return float(output)
 
@@ -63,10 +63,12 @@ def get_workers_alt():
 def scale_up(current,goal):
     for i in range((current + 1), (goal + 1)):
         verbose("Starting server " + str(i))
+    subprocess.call(["docker service update --replicas=" + int(goal) + "bf_bookface_web"])
 
 def scale_down(current,goal):
     for i in range (current, goal, -1):
         verbose("Shutting down server " + str(i))
+    subprocess.call(["docker service update --replicas=" + int(goal) + "bf_bookface_web"])
 
 
 current_rate = get_rate(USER,PASSWORD,IP)
