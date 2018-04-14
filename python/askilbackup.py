@@ -45,7 +45,7 @@ def debug(text):
 
 verbose("verbose is enabled")
 debug("debug is enabled")
-
+# Function that checks if a host is up and starts it if not
 def status_check(host):
     verbose("Checking if " + host + " is active")
     output = subprocess.check_output(["openstack server list | grep " + host + " | awk '{print$6}'"],shell=True)
@@ -54,7 +54,16 @@ def status_check(host):
         name = subprocess.check_output(["openstack server list | grep " + host + " | awk '{print$4}'"],shell=True)
         verbose("Starting up " + name)
         subprocess.call(["openstack server start " + name],shell=True)
-        time.sleep(20)
+        # Busy Waiting until server is reachable
+        while True:
+            response = os.system("ping -c 1 " + host)
+            if response !=0:
+                verbose("Waiting for system to wake up...")
+                time.sleep(0.5)
+            else:
+                verbose("System is up!")
+                time.sleep(10)
+                break
         
 
 
