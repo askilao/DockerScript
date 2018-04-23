@@ -64,8 +64,6 @@ def status_check(host):
                 verbose("System is up!")
                 time.sleep(10)
                 break
-        
-
 
 
 verbose("Opening config file: " + CONFIG)
@@ -74,8 +72,8 @@ with open(CONFIG) as config:
         debug("Read line: " + line)
         configlist = line.split(":")
         pathlist = configlist[1].split(",")
+        verbose("Host is: " + configlist[0])
         host = configlist[0]
-        verbose("Host is: " + host)
 
         
         # 0. check for bacup folder
@@ -84,8 +82,6 @@ with open(CONFIG) as config:
             verbose("creating host backup directory: " + host_backup_path)
             os.makedirs(host_backup_path)
 
-
-
         # 1. remove oldest version of backup
         if os.path.isdir(host_backup_path + "." + str(ITERATIONS)):
             verbose("Deleting oldest version of backup directory")
@@ -93,8 +89,9 @@ with open(CONFIG) as config:
 
         # 2. move folders up one step
         for i in range((ITERATIONS - 1),0,-1):
+            debug("Checking if " + str(i) + "th folder exists")
             if os.path.isdir(host_backup_path + "." + str(i)):
-                verbose("Moving " + host_backup_path + " from " + str(i) + " to " +str(i+1))
+                verbose("Moving " + host_backup_path + " from " + str(i) + " to " +str(i + 1))
                 shutil.move(host_backup_path + "." + str(i),host_backup_path + "." + str(i + 1))
                 
                 
@@ -110,34 +107,7 @@ with open(CONFIG) as config:
             if not os.path.isdir(host_backup_path + folder):
                 os.makedirs(host_backup_path + folder)
             
-            verbose_rsync = ""
-            if VERBOSE:
-                verbose_rsync = "v"
-            status_check(host)
+            verbose_rsync = "v" if VERBOSE else ""
             command ="rsync -a" + verbose_rsync + " --delete " + SCP_USER + host + ":" + folder + " " + host_backup_path + folder
-            debug("Executing: " + command )
+            debug("Executing: " + command)
             os.system(command)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
