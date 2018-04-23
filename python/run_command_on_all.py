@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+#Runs a user specified command on all instances on your OpenStack
+
 import os
 import shutil
 import argparse
