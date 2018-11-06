@@ -5,5 +5,4 @@
 - Askil Olsen
 - Adrian Moen
 
-:trollface:
 
